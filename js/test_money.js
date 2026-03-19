@@ -11,6 +11,11 @@ class Money {
     times(multiplier) {
         return new Money(this.amount * multiplier, this.currency);
     }
+
+    // 定义除法
+    divide(divisor) {
+        return new Money(this.amount / divisor, this.currency);
+    }
 }
 
 // 测试代码1
@@ -24,3 +29,9 @@ let tenEuros = new Money(10, "EUR");
 let twentyEuros = tenEuros.times(2);
 assert.strictEqual(twentyEuros.amount, 20);
 assert.strictEqual(twentyEuros.currency, "EUR");
+
+// 测试代码3，针对除法
+let originalMoney = new Money(4002, "KRW")
+let actualMoneyAfterDivision = originalMoney.divide(4)
+let expectedMoneyAfterDivision = new Money(1000.5, "KRW")
+assert.deepStrictEqual(actualMoneyAfterDivision, expectedMoneyAfterDivision)
