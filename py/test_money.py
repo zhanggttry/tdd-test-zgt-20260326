@@ -8,6 +8,10 @@ class Money:
         self.amount = amount
         self.currency = currency
     
+    # 覆写__eq__方法
+    def __eq__(self, other):
+        return self.amount == other.amount and self.currency == other.currency
+    
     # 定义方法1
     def times(self, multiplier):
         return Money(self.amount * multiplier, self.currency)
@@ -20,10 +24,9 @@ class TestMoney(unittest.TestCase):
     
     # 测试代码1
     def testMultiplicationInDollars(self):
-        fiver = Money(5, "USD")
-        tenner = fiver.times(2)
-        self.assertEqual(10, tenner.amount)
-        self.assertEqual("USD", tenner.currency)
+        fiveDollars = Money(5, "USD")
+        tenDollars = Money(10, "USD")
+        self.assertEqual(tenDollars, fiveDollars.times(2))
     
     # 测试代码2
     def testMultiplicationInEuros(self):
