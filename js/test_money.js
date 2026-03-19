@@ -2,17 +2,25 @@
 const assert = require('assert');
 
 // 产品代码
-class Dollar {
-    //创建1个构造器
-    constructor(amount) {
+class Money {
+    constructor(amount, currency) {
         this.amount = amount;
+        this.currency = currency;
     }
+
     times(multiplier) {
-        return new Dollar(this.amount * multiplier); // 返回1个表示乘积美元的对象
+        return new Money(this.amount * multiplier, this.currency);
     }
 }
 
-// 测试代码
-let fiver = new Dollar(5);
+// 测试代码1
+let fiver = new Money(5, "USD");
 let tenner = fiver.times(2);
 assert.strictEqual(tenner.amount, 10);
+assert.strictEqual(tenner.currency, "USD");
+
+// 测试代码2
+let tenEuros = new Money(10, "EUR");
+let twentyEuros = tenEuros.times(2);
+assert.strictEqual(twentyEuros.amount, 20);
+assert.strictEqual(twentyEuros.currency, "EUR");
