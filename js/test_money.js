@@ -20,11 +20,17 @@ class Money {
 
 // 产品代码2，实现Portfolio类
 class Portfolio {
-    add(money) {
-
+    constructor() {
+        this.moneys = [];
+    }
+    add(...moneys) {
+        this.moneys = this.moneys.concat(moneys);
     }
     evaluate(currency) {
-        return new Money(15, "USD");
+        let total = this.moneys.reduce( (sum, money) => {
+            return sum + money.amount;
+        }, 0);
+        return new Money(total, currency);
     }
 }
 
