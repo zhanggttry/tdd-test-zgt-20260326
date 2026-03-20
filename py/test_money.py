@@ -1,5 +1,7 @@
 # 编写第一个TDD测试用例，2026年03月17日09:00:00
 import unittest
+import functools
+import operator
 
 # 产品代码
 
@@ -22,11 +24,15 @@ class Money:
     
 # 产品代码，定义Porfolio类
 class Portfolio:
+    def __init__(self):
+        self.moneys = []
     def add(self, *moneys):
-        pass
+        self.moneys.extend(moneys)
     
     def evaluate(self, currency):
-        return Money(15, "USD")
+        total = functools.reduce(
+            operator.add, map(lambda m: m.amount, self.moneys), 0)
+        return Money(total, currency)
     
 # 测试用例代码1
 class TestMoney(unittest.TestCase):
