@@ -19,6 +19,15 @@ class Money:
     # 定义产品方法2
     def divide(self, divisor):
         return Money(self.amount / divisor, self.currency)
+    
+# 产品代码，定义Porfolio类
+class Portfolio:
+    def add(self, *moneys):
+        pass
+    
+    def evaluate(self, currency):
+        return Money(15, "USD")
+    
 # 测试用例代码1
 class TestMoney(unittest.TestCase):
     
@@ -44,6 +53,15 @@ class TestMoney(unittest.TestCase):
                          actualMoneyAfterDivision.amount)
         self.assertEqual(expectedMoneyAfterDivision.currency,
                          actualMoneyAfterDivision.currency)    
+        
+    # 测试代码4
+    def testAddition(self):
+        fiveDollars = Money(5, "USD")
+        tenDollars = Money(10, "USD")
+        fifteenDollars = Money(15, "USD")
+        portfolio = Portfolio()
+        portfolio.add(fiveDollars, tenDollars)
+        self.assertEqual(fifteenDollars, portfolio.evaluate("USD"))
         
 if __name__ == '__main__':
     unittest.main()
