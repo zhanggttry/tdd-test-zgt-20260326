@@ -13,15 +13,7 @@ func assertEqual(t *testing.T, expected s.Money, actual s.Money) {
 }
 
 // 测试代码1
-func TestMultiplicationInDollars(t *testing.T) {
-	fiver := s.Money{Amount: 5, Currency: "USD"}
-	actualResult:= fiver.Times(2)
-	expectedResult := s.Money{Amount: 10, Currency: "USD"}
-	assertEqual(t, expectedResult, actualResult)
-}
-
-// 测试代码2
-func TestMultiplicationInEuros(t *testing.T) {
+func TestMultiplication(t *testing.T) {
 	tenEuros := s.Money{Amount: 10, Currency: "EUR"}
 	actualResult := tenEuros.Times(2)
 
@@ -29,7 +21,7 @@ func TestMultiplicationInEuros(t *testing.T) {
 	assertEqual(t, expectedResult, actualResult)
 }
 
-// 测试代码3
+// 测试代码2
 func TestDivision(t *testing.T) {
 	originalMoney := s.Money{Amount: 4002, Currency: "KRW"}
 	actualResult := originalMoney.Divide(4)
@@ -38,7 +30,7 @@ func TestDivision(t *testing.T) {
 	assertEqual(t, expectedResult, actualResult)
 }
 
-// 测试代码 5-测试加法
+// 测试代码3-测试加法
 func TestAddition(t *testing.T) {
 	var portfolio s.Portfolio
 	var portfolioInDollars s.Money
