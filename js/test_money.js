@@ -1,38 +1,7 @@
 // 编写第1个测试用例
 const assert = require('assert');
-
-// 产品代码
-class Money {
-    constructor(amount, currency) {
-        this.amount = amount;
-        this.currency = currency;
-    }
-
-    times(multiplier) {
-        return new Money(this.amount * multiplier, this.currency);
-    }
-
-    // 定义除法
-    divide(divisor) {
-        return new Money(this.amount / divisor, this.currency);
-    }
-}
-
-// 产品代码2，实现Portfolio类
-class Portfolio {
-    constructor() {
-        this.moneys = [];
-    }
-    add(...moneys) {
-        this.moneys = this.moneys.concat(moneys);
-    }
-    evaluate(currency) {
-        let total = this.moneys.reduce( (sum, money) => {
-            return sum + money.amount;
-        }, 0);
-        return new Money(total, currency);
-    }
-}
+const Money = require('./money');
+const Portfolio = require('./portfolio');
 
 // 测试代码1
 let fiveDollars = new Money(5, "USD");
