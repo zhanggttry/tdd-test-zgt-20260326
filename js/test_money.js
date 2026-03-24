@@ -40,12 +40,20 @@ class MoneyTest{
     runAllTests() {
         let testMethods = this.getAllTestMethods(); // 获取所有的测试方法名
         testMethods.forEach(m => {
+            // 测试触发该方法之前，先打印出其名字
+            console.log("Running: %s()", m);
             let method = Reflect.get(this, m); // 获取该方法的method对象
-            Reflect.apply(method, this, []); // 在this对象上调用method所表示的测试方法
+            try {
+                Reflect.apply(method, this, []); // 在this对象上调用method所表示的测试方法
+            } catch (e) {
+                if ( e instanceof assert.AssertionError) {
+                    console.log(e);
+                } else {
+                    throw e;
+                }
+            }
+            
         })
-        this.testMultiplication();
-        this.testDivision();
-        this.testAddition();
     }
 }
 
