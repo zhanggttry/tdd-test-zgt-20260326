@@ -28,7 +28,17 @@ class MoneyTest{
     assert.deepStrictEqual(portfolio.evaluate("USD"), fifteenDollars);
     }
 
+    getAllTestMethods() {
+        let testMethods = ['testMultiplication','testDivision','testAddition'];
+        return testMethods;
+    }
+
     runAllTests() {
+        let testMethods = this.getAllTestMethods(); // 获取所有的测试方法名
+        testMethods.forEach(m => {
+            let method = Reflect.get(this, m); // 获取该方法的method对象
+            Reflect.apply(method, this, []); // 在this对象上调用method所表示的测试方法
+        })
         this.testMultiplication();
         this.testDivision();
         this.testAddition();
