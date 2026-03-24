@@ -28,6 +28,16 @@ class MoneyTest{
     assert.deepStrictEqual(portfolio.evaluate("USD"), fifteenDollars);
     }
 
+    // 测试代码4，美元与欧元相加
+    testAdditionOfDollarsAndEuros() {
+        let fiveDollars = new Money(5, "USD");
+        let tenEuros = new Money(10, "EUR");
+        let portfolio = new Portfolio();
+        portfolio.add(fiveDollars, tenEuros);
+        let expectedValue = new Money(17, "USD");
+        assert.deepStrictEqual(portfolio.evaluate("USD"), expectedValue);
+    }
+
     getAllTestMethods() {
         let moneyPrototype = MoneyTest.prototype; // 获取MoneyTest类的原型对象
         let allProps = Object.getOwnPropertyNames(moneyPrototype); // 获取原型对象的所有属性名
