@@ -29,7 +29,11 @@ class MoneyTest{
     }
 
     getAllTestMethods() {
-        let testMethods = ['testMultiplication','testDivision','testAddition'];
+        let moneyPrototype = MoneyTest.prototype; // 获取MoneyTest类的原型对象
+        let allProps = Object.getOwnPropertyNames(moneyPrototype); // 获取原型对象的所有属性名
+        let testMethods = allProps.filter(p => {
+            return typeof moneyPrototype[p] === 'function' && p.startsWith('test'); // 过滤出以test开头的方法
+        });
         return testMethods;
     }
 
