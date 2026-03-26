@@ -18,9 +18,13 @@ func (p Portfolio) Evaluate(currency string) Money {
 
 // 编写换算货币的convert方法
 func convert(money Money, currency string) float64 {
-	eurToUsd := 1.2
+	exchangeRates := map[string]float64 {
+		"EUR->USD": 1.2,
+		"USD->KRW": 1100,
+	}
 	if money.Currency == currency {
 		return money.Amount
 	}
-	return money.Amount * eurToUsd
+	key := money.Currency + "->" +currency
+	return money.Amount * exchangeRates[key]
 }
